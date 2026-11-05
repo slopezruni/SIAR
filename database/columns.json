@@ -1,0 +1,83 @@
+{
+  "users": [
+    "username",
+    "name",
+    "role",
+    "salt",
+    "hash",
+    "enabled",
+    "deleted",
+    "recoveryHash",
+    "recoveryExpires"
+  ],
+  "tables": [
+    "floor",
+    "capacity",
+    "occupied"
+  ],
+  "products": [
+    "name",
+    "price",
+    "category",
+    "deleted",
+    "available"
+  ],
+  "inventory": [
+    "name",
+    "unit",
+    "category",
+    "stock",
+    "minimum",
+    "deleted"
+  ],
+  "orders": [
+    "tableId",
+    "customer",
+    "notes",
+    "status",
+    "sent",
+    "at",
+    "author"
+  ],
+  "movements": [
+    "itemId",
+    "name",
+    "unit",
+    "type",
+    "quantity",
+    "reason",
+    "actor",
+    "at"
+  ],
+  "invoices": [
+    "orderId",
+    "tableId",
+    "subtotal",
+    "discount",
+    "taxRate",
+    "tax",
+    "total",
+    "customer",
+    "document",
+    "method",
+    "received",
+    "change",
+    "actor",
+    "at"
+  ],
+  "audit": [
+    "at",
+    "actor",
+    "role",
+    "action",
+    "record"
+  ],
+  "reservations": [
+    "tableId",
+    "customer",
+    "partySize",
+    "at",
+    "status",
+    "actor"
+  ]
+}

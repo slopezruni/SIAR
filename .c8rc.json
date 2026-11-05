@@ -1,0 +1,1 @@
+{"all":true,"include":["server.js","services/**/*.js","database/**/*.js","public/js/**/*.js","scripts/init-db.js","scripts/import-v3.js"],"exclude":["tests/**","node_modules/**"],"reporter":["text","json-summary","html"],"temp-directory":"coverage/tmp","reports-dir":"coverage"}

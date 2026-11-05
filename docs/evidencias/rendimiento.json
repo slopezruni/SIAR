@@ -1,0 +1,7 @@
+{
+  "ambiente": "Prueba local, datos ficticios, sin carga masiva",
+  "solicitudes": 70,
+  "maximoMs": 50.57,
+  "promedioMs": 12.97,
+  "todasMenoresATresSegundos": true
+}

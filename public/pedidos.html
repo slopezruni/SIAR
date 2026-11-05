@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIAR · Pedidos</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/modulos.css">
+<link rel="stylesheet" href="css/funcional.css">
+<script src="js/shared.js" defer>
+</script>
+<script src="js/modules.js" defer>
+</script>
+<link rel="stylesheet" href="css/apariencia.css">
+</head>
+<body data-page="pedidos">
+<a class="skip-link" href="#main">Ir al contenido</a>
+<div class="app-layout">
+<aside class="sidebar">
+<div class="brand">
+<span class="brand-mark">s.</span>
+<div>
+<strong>SIAR</strong>
+<span>Sistema de restaurante</span>
+</div>
+</div>
+<p class="nav-caption">RESTAURANTE</p>
+<nav class="module-nav" aria-label="Navegación principal">
+<a href="index.html" data-roles="administrador mesero">Mesas</a>
+<a href="pedidos.html" data-roles="administrador mesero">Pedidos</a>
+<a href="cocina.html" data-roles="administrador cocinero">Cocina</a>
+<a href="inventario.html" data-roles="administrador cocinero">Inventario</a>
+<a href="facturacion.html" data-roles="administrador cajero">Facturación</a>
+<a href="actividad.html" data-roles="administrador">Actividad</a>
+<a href="menu.html" data-roles="administrador">Menú</a>
+<a href="usuarios.html" data-roles="administrador">Usuarios</a>
+</nav>
+<div class="sidebar-bottom">
+<p id="session-name">
+</p>
+<button type="button" class="session-button" id="change-password">Cambiar contraseña</button>
+<button type="button" class="session-button" id="recovery-settings">Código de recuperación</button>
+<button type="button" class="session-button" id="logout">Cerrar sesión</button>
+</div>
+</aside>
+<main id="main">
+<header class="topbar">
+<span>Restaurante / <strong>Pedidos</strong>
+</span>
+<span id="connection">Conectando…</span>
+</header>
+<div class="page-content">
+<div class="page-heading">
+<div>
+<p class="eyebrow">SIAR</p>
+<h1>Pedidos</h1>
+<p class="intro">Crea un pedido, envíalo a cocina y sigue su preparación.</p>
+</div>
+<button class="button button-light" id="refresh">Actualizar</button>
+</div>
+<p id="page-error" class="form-error" role="alert">
+</p>
+<div class="toolbar">
+<button type="button" class="button button-primary" id="new-order">+ Nuevo pedido</button>
+<label class="filter">Mostrar<select id="order-filter">
+<option value="active">Pedidos activos</option>
+<option value="all">Todos los pedidos</option>
+</select>
+</label>
+</div>
+<section class="module-panel">
+<div id="order-list">
+</div>
+</section>
+<dialog id="order-dialog" aria-labelledby="order-title">
+<h2 id="order-title">Nuevo pedido</h2>
+<form id="order-form">
+<div class="form-grid">
+<label>Cliente (opcional)<input name="customer" type="text" maxlength="100">
+</label>
+<label>Mesa<select name="tableId" required>
+</select>
+</label>
+<label class="full">Observaciones<textarea name="notes" maxlength="500" placeholder="Ejemplo: sin cebolla">
+</textarea>
+</label>
+</div>
+<h3>Productos</h3>
+<div class="product-picker">
+<label>Producto<select id="product-choice">
+</select>
+</label>
+<label>Cantidad<input id="product-quantity" type="number" min="1" max="1000" step="1" value="1">
+</label>
+<button type="button" class="button button-light" id="add-product">Agregar</button>
+</div>
+<div id="draft-items">
+</div>
+<p id="draft-total" class="total">
+</p>
+<p class="form-error" role="alert">
+</p>
+<div class="actions">
+<button type="submit" class="button button-primary" id="save-order">Guardar pedido</button>
+<button type="button" class="button button-light" data-close>Cancelar</button>
+</div>
+</form>
+</dialog>
+<dialog id="order-detail" aria-labelledby="detail-heading">
+<h2 id="detail-heading">Detalle del pedido</h2>
+<div id="order-detail-body">
+</div>
+<button type="button" class="button button-light" data-close>Cerrar</button>
+</dialog>
+<footer class="page-footer">SIAR · Proyecto académico · Datos guardados en este equipo</footer>
+</div>
+</main>
+</div>
+<dialog id="password-dialog" aria-labelledby="password-title">
+<h2 id="password-title">Cambiar contraseña</h2>
+<form id="password-form" class="form-grid">
+<label>Contraseña actual<input name="current" type="password" required autocomplete="current-password">
+</label>
+<label>Nueva contraseña<input name="next" type="password" required minlength="10" autocomplete="new-password">
+</label>
+<p class="form-error full" role="alert">
+</p>
+<div class="actions full">
+<button class="button button-primary">Guardar contraseña</button>
+<button class="button button-light" type="button" data-close>Cancelar</button>
+</div>
+</form>
+</dialog>
+<dialog id="personal-recovery"><h2>Mi código de recuperación</h2><p>Genera un código y guárdalo fuera del sistema. Reemplaza cualquier código anterior.</p><form id="personal-recovery-form"><label>Contraseña actual<input type="password" name="password" required autocomplete="current-password"></label><p class="form-error" role="alert"></p><button class="button button-primary">Generar código</button></form><input id="personal-code" readonly aria-label="Nuevo código" hidden><button class="button button-light" type="button" data-close>Cerrar</button></dialog>
+<div id="notification" class="toast" role="status" hidden>
+</div>
+</body>
+</html>

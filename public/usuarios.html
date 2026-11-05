@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIAR · Usuarios</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/modulos.css">
+<link rel="stylesheet" href="css/funcional.css">
+<script src="js/shared.js" defer>
+</script>
+<script src="js/admin.js" defer>
+</script>
+<link rel="stylesheet" href="css/apariencia.css">
+</head>
+<body data-page="usuarios">
+<a class="skip-link" href="#main">Ir al contenido</a>
+<div class="app-layout">
+<aside class="sidebar">
+<div class="brand">
+<span class="brand-mark">s.</span>
+<div>
+<strong>SIAR</strong>
+<span>Sistema de restaurante</span>
+</div>
+</div>
+<p class="nav-caption">RESTAURANTE</p>
+<nav class="module-nav" aria-label="Navegación principal">
+<a href="index.html" data-roles="administrador mesero">Mesas</a>
+<a href="pedidos.html" data-roles="administrador mesero">Pedidos</a>
+<a href="cocina.html" data-roles="administrador cocinero">Cocina</a>
+<a href="inventario.html" data-roles="administrador cocinero">Inventario</a>
+<a href="facturacion.html" data-roles="administrador cajero">Facturación</a>
+<a href="actividad.html" data-roles="administrador">Actividad</a>
+<a href="menu.html" data-roles="administrador">Menú</a>
+<a href="usuarios.html" data-roles="administrador">Usuarios</a>
+</nav>
+<div class="sidebar-bottom">
+<p id="session-name">
+</p>
+<button type="button" class="session-button" id="change-password">Cambiar contraseña</button>
+<button type="button" class="session-button" id="recovery-settings">Código de recuperación</button>
+<button type="button" class="session-button" id="logout">Cerrar sesión</button>
+</div>
+</aside>
+<main id="main">
+<header class="topbar">
+<span>Restaurante / <strong>Usuarios</strong>
+</span>
+<span id="connection">Conectando…</span>
+</header>
+<div class="page-content">
+<div class="page-heading">
+<div>
+<p class="eyebrow">SIAR</p>
+<h1>Usuarios</h1>
+<p class="intro">Administra las cuentas y permisos del equipo.</p>
+</div>
+<button class="button button-light" id="refresh">Actualizar</button>
+</div>
+<p id="page-error" class="form-error" role="alert">
+</p>
+<section class="module-panel"><p>Registra cuentas, activa solicitudes y asigna el rol de cada persona.</p><button class="button button-primary" id="new-record">Nuevo usuario</button><div id="record-list"></div>
+<dialog id="record-dialog"><h2 id="record-title">Usuario</h2><form id="record-form" class="form-grid">
+<label>Nombre<input name="name" required maxlength="100"></label><label>Usuario<input name="username" required minlength="3" maxlength="40" pattern="[a-z0-9._-]+"></label>
+<label id="initial-password">Contraseña inicial<input name="password" type="password" minlength="10" autocomplete="new-password"></label>
+<label>Rol<select name="role"><option value="mesero">Mesero</option><option value="cocinero">Cocinero</option><option value="cajero">Cajero</option><option value="administrador">Administrador</option></select></label>
+<label>Estado<select name="enabled"><option value="true">Activo</option><option value="false">Pendiente / inactivo</option></select></label>
+<p class="form-error full" role="alert"></p><div class="actions full"><button class="button button-primary">Guardar</button><button type="button" class="button button-light" data-close>Cancelar</button></div></form></dialog>
+<dialog id="code-dialog"><h2>Código de recuperación</h2><p id="code-message"></p><p>Entrégalo solamente al dueño de la cuenta.</p><input id="recovery-output" readonly aria-label="Código de recuperación"><button class="button button-light" data-close>Cerrar</button></dialog></section><footer class="page-footer">SIAR · Proyecto académico · Datos guardados en este equipo</footer>
+</div>
+</main>
+</div>
+<dialog id="password-dialog" aria-labelledby="password-title">
+<h2 id="password-title">Cambiar contraseña</h2>
+<form id="password-form" class="form-grid">
+<label>Contraseña actual<input name="current" type="password" required autocomplete="current-password">
+</label>
+<label>Nueva contraseña<input name="next" type="password" required minlength="10" autocomplete="new-password">
+</label>
+<p class="form-error full" role="alert">
+</p>
+<div class="actions full">
+<button class="button button-primary">Guardar contraseña</button>
+<button class="button button-light" type="button" data-close>Cancelar</button>
+</div>
+</form>
+</dialog>
+<dialog id="personal-recovery"><h2>Mi código de recuperación</h2><p>Genera un código y guárdalo fuera del sistema. Reemplaza cualquier código anterior.</p><form id="personal-recovery-form"><label>Contraseña actual<input type="password" name="password" required autocomplete="current-password"></label><p class="form-error" role="alert"></p><button class="button button-primary">Generar código</button></form><input id="personal-code" readonly aria-label="Nuevo código" hidden><button class="button button-light" type="button" data-close>Cerrar</button></dialog>
+<div id="notification" class="toast" role="status" hidden>
+</div>
+</body>
+</html>

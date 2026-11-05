@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f35">
+  <title>SIAR · Mesas del restaurante</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/modulos.css">
+<link rel="stylesheet" href="css/funcional.css">
+  <script src="js/shared.js" defer></script>
+<script src="js/app.js" defer>
+</script>
+<link rel="stylesheet" href="css/apariencia.css">
+</head>
+<body data-page="index">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-plan" viewBox="0 0 24 24">
+<rect x="3" y="3" width="7" height="7" rx="1.5"/>
+<rect x="14" y="3" width="7" height="7" rx="1.5"/>
+<rect x="3" y="14" width="7" height="7" rx="1.5"/>
+<rect x="14" y="14" width="7" height="7" rx="1.5"/>
+</symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+<path d="M12 20V4m-7 7 7-7 7 7"/>
+</symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24">
+<circle cx="9" cy="7" r="3"/>
+<path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/>
+</symbol>
+    <symbol id="icon-reset" viewBox="0 0 24 24">
+<path d="M3 10a9 9 0 1 1 2 9M3 4v6h6"/>
+</symbol>
+    <symbol id="icon-pointer" viewBox="0 0 24 24">
+<path d="m5 3 14 9-7 1-3 7-4-17Z"/>
+</symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Ir al plano de mesas</a>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="brand"><span class="brand-mark">s.</span><div><strong>SIAR</strong><span>Sistema de restaurante</span></div></div><p class="nav-caption">RESTAURANTE</p><nav class="module-nav" aria-label="Navegación principal">
+<a href="index.html" data-roles="administrador mesero">Mesas</a>
+<a href="pedidos.html" data-roles="administrador mesero">Pedidos</a>
+<a href="cocina.html" data-roles="administrador cocinero">Cocina</a>
+<a href="inventario.html" data-roles="administrador cocinero">Inventario</a>
+<a href="facturacion.html" data-roles="administrador cajero">Facturación</a>
+<a href="actividad.html" data-roles="administrador">Actividad</a>
+<a href="menu.html" data-roles="administrador">Menú</a>
+<a href="usuarios.html" data-roles="administrador">Usuarios</a>
+</nav><div class="sidebar-bottom"><p id="session-name"></p><button type="button" class="session-button" id="change-password">Cambiar contraseña</button><button type="button" class="session-button" id="recovery-settings">Código de recuperación</button>
+<button type="button" class="session-button" id="logout">Cerrar sesión</button></div></aside>
+
+    <main id="main">
+      <header class="topbar">
+<span>Restaurante <span class="breadcrumb-separator">/</span> <strong>Mesas</strong>
+</span>
+<span id="connection">Conectando…</span>
+</header>
+      <div class="page-content">
+        <div class="page-heading">
+<div>
+<p class="eyebrow">MESAS</p>
+<h1>Mesas del restaurante</h1>
+<p class="intro">Selecciona una mesa y consulta su disponibilidad.</p>
+</div>
+<button class="button button-light" id="reset-demo" type="button">
+<svg class="icon">
+<use href="#icon-reset"/>
+</svg>Actualizar mesas</button>
+</div>
+
+        <div class="toolbar"><button id="new-table" type="button" class="button button-light" data-roles="administrador">Nueva mesa</button></div><section class="summary" aria-label="Resumen del piso actual">
+          <div class="summary-item">
+<span class="summary-label">Mesas del piso</span>
+<strong id="total-count">12</strong>
+</div>
+          <div class="summary-item">
+<span class="summary-label">
+<i class="status-dot available">
+</i>Disponibles</span>
+<strong id="available-count">—</strong>
+</div>
+          <div class="summary-item">
+<span class="summary-label">
+<i class="status-dot occupied">
+</i>Ocupadas</span>
+<strong id="occupied-count">—</strong>
+</div>
+          <div class="summary-item"><span>Reservadas</span><strong id="reserved-count">0</strong></div>
+        </section>
+
+        <div class="workspace">
+          <section class="plan-panel" aria-labelledby="plan-title">
+            <div class="panel-heading">
+<div>
+<h2 id="plan-title">Primer piso</h2>
+<p id="floor-description">Salón principal</p>
+</div>
+<div class="floor-switch" role="group" aria-label="Seleccionar piso">
+<button type="button" data-floor="1" aria-pressed="true">Piso 1</button>
+<button type="button" data-floor="2" aria-pressed="false">Piso 2</button>
+</div>
+</div>
+            <div class="plan-legend" aria-label="Colores de las mesas">
+<span>
+<i class="status-dot available">
+</i>Disponible</span>
+<span>
+<i class="status-dot occupied">
+</i>Ocupada</span>
+<span class="selected-legend">
+<i>
+</i>Seleccionada</span>
+</div>
+            <p class="mobile-hint">Desliza el plano para ver todas las mesas.</p>
+            <div class="plan-scroll" role="region" aria-label="Plano desplazable del restaurante" tabindex="0">
+              <div class="floor-plan">
+                <svg class="floor-drawing" viewBox="0 0 800 580" aria-hidden="true">
+                  <defs>
+<pattern id="floor-tiles" width="32" height="32" patternUnits="userSpaceOnUse">
+<path d="M32 0H0V32" fill="none" stroke="#e5e7e0" stroke-width="0.7"/>
+</pattern>
+</defs>
+                  <path d="M160 40H575V250H744V540H160Z" fill="#f9faf6"/>
+                  <path d="M160 40H575V250H744V540H160Z" fill="url(#floor-tiles)"/>
+                  <path d="M160 355V40H575V250H744V540H160V425" fill="none" stroke="#b7c1b7" stroke-width="4" stroke-linejoin="round"/>
+                  <path d="M160 425H226M160 355A70 70 0 0 1 230 425" fill="none" stroke="#b7c1b7" stroke-width="1.5"/>
+                </svg>
+                <span class="room-label">ÁREA DE MESAS</span>
+                <span class="entry-label">Entrada</span>
+                <button id="stairs-button" class="stairs-button" type="button">
+<svg class="stairs-arrow icon">
+<use href="#icon-arrow"/>
+</svg>
+<span id="stairs-label">Subir al<br>piso 2</span>
+<span class="stair-lines" aria-hidden="true">
+</span>
+</button>
+                <div id="tables-layer" role="group" aria-label="Mesas del primer piso">
+</div>
+              </div>
+            </div>
+            <div class="plan-footer">
+<div class="row-actions"><button type="button" id="previous-tables" class="button button-light">Anterior</button><span id="tables-page"></span><button type="button" id="next-tables" class="button button-light">Siguiente</button></div><span id="floor-footer">Piso 1 de 2</span>
+<span>Haz clic en una mesa para ver el detalle.</span>
+</div>
+          </section>
+
+          <aside class="detail-panel" aria-labelledby="detail-title">
+            <div class="detail-header">
+<h2 id="detail-title">Detalle de la mesa</h2>
+<svg class="icon">
+<use href="#icon-plan"/>
+</svg>
+</div>
+            <div id="empty-detail" class="empty-detail">
+<div class="empty-illustration" aria-hidden="true">
+<svg class="icon">
+<use href="#icon-pointer"/>
+</svg>
+</div>
+<h3>Selecciona una mesa</h3>
+<p>Selecciona una mesa del plano para ver su capacidad y su estado.</p>
+</div>
+            <div id="selected-detail" hidden>
+              <div class="detail-table-number">
+<span>MESA</span>
+<strong id="selected-number">
+</strong>
+</div>
+              <span id="selected-status" class="status-label">
+</span>
+              <dl class="table-facts">
+<div>
+<dt>Ubicación</dt>
+<dd id="selected-floor">
+</dd>
+</div>
+<div>
+<dt>Capacidad</dt>
+<dd>
+<svg class="icon">
+<use href="#icon-people"/>
+</svg>
+<span id="selected-capacity">
+</span>
+</dd>
+</div>
+</dl>
+              <p id="selected-description" class="detail-description">
+</p>
+              <a id="table-order-link" class="button button-light" href="pedidos.html">Ver pedidos</a>
+<button id="toggle-status" class="button button-primary" type="button">
+</button>
+              <button type="button" id="edit-table" class="button button-light" data-roles="administrador">Editar mesa</button><button type="button" id="reserve-table" class="button button-light">Reservar mesa</button><p id="reservation-detail"></p><button type="button" id="attend-reservation" class="button button-light" hidden>Confirmar llegada</button><button type="button" id="cancel-reservation" class="button button-light" hidden>Cancelar reserva</button><p class="simulation-note">Los cambios se guardan en el servidor.</p>
+            </div>
+            <div class="detail-help">
+<strong>Estado de las mesas</strong>
+<p>Verde: la mesa está disponible.<br>Rojo: la mesa está ocupada.<br>Amarillo: la mesa está reservada.</p>
+</div>
+          </aside>
+        </div>
+        <p id="page-error" class="form-error" role="alert"></p><footer class="page-footer">
+<span>SIAR · Gestión del restaurante</span>
+<span>Segundo piso: distribución provisional</span>
+</footer>
+      </div>
+    </main>
+  </div>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+</p>
+  <noscript>
+<p class="noscript-message">Activa JavaScript para ver las mesas y cambiar de piso.</p>
+</noscript>
+<dialog id="table-dialog"><h2 id="table-form-title">Nueva mesa</h2><form id="table-form" class="form-grid"><label>Piso<select name="floor"><option value="1">Piso 1</option><option value="2">Piso 2</option></select></label><label>Capacidad<input name="capacity" type="number" required min="1" max="30" step="1" value="4"></label><p class="form-error full" role="alert"></p><div class="actions full"><button class="button button-primary">Guardar mesa</button><button type="button" class="button button-light" data-close>Cancelar</button></div></form></dialog>
+<dialog id="reserve-dialog"><h2>Reservar mesa</h2><p>La mesa queda apartada desde ahora hasta confirmar la llegada o cancelar la reserva.</p><form id="reserve-form" class="form-grid"><label>Nombre del cliente<input name="customer" required maxlength="100"></label><label>Personas<input name="partySize" type="number" required min="1" step="1"></label><label>Fecha y hora de llegada<input name="at" type="datetime-local" required></label><p class="form-error full" role="alert"></p><div class="actions full"><button class="button button-primary">Guardar reserva</button><button type="button" class="button button-light" data-close>Cancelar</button></div></form></dialog>
+<dialog id="password-dialog" aria-labelledby="password-title"><h2 id="password-title">Cambiar contraseña</h2><form id="password-form" class="form-grid"><label>Contraseña actual<input name="current" type="password" required autocomplete="current-password"></label><label>Nueva contraseña<input name="next" type="password" required minlength="10" autocomplete="new-password"></label><p class="form-error full" role="alert"></p><div class="actions full"><button class="button button-primary">Guardar contraseña</button><button class="button button-light" type="button" data-close>Cancelar</button></div></form></dialog><dialog id="personal-recovery"><h2>Mi código de recuperación</h2><p>Genera un código y guárdalo fuera del sistema. Reemplaza cualquier código anterior.</p><form id="personal-recovery-form"><label>Contraseña actual<input type="password" name="password" required autocomplete="current-password"></label><p class="form-error" role="alert"></p><button class="button button-primary">Generar código</button></form><input id="personal-code" readonly aria-label="Nuevo código" hidden><button class="button button-light" type="button" data-close>Cerrar</button></dialog>
+<div id="notification" class="toast" role="status" hidden></div></body>
+</html>
+

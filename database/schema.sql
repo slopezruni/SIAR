@@ -1,0 +1,118 @@
+-- SIAR: tablas InnoDB, importes en centavos. Se ejecuta mediante npm run db:init.
+
+CREATE TABLE IF NOT EXISTS meta (id INT PRIMARY KEY, version INT NOT NULL) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `users` (
+  id INT PRIMARY KEY,
+  `username` VARCHAR(40) NOT NULL UNIQUE,
+  `name` VARCHAR(100) NOT NULL,
+  `role` VARCHAR(25) NOT NULL,
+  `salt` VARCHAR(64) NOT NULL,
+  `hash` VARCHAR(128) NOT NULL,
+  `enabled` BOOLEAN NOT NULL DEFAULT 1,
+  `deleted` BOOLEAN NOT NULL DEFAULT 0,
+  `recoveryHash` VARCHAR(64) NULL,
+  `recoveryExpires` BIGINT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `tables` (
+  id INT PRIMARY KEY,
+  `floor` INT NOT NULL,
+  `capacity` INT NOT NULL,
+  `occupied` BOOLEAN NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `products` (
+  id INT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `price` BIGINT NOT NULL,
+  `available` BOOLEAN NOT NULL DEFAULT 1,
+  `category` VARCHAR(100) NOT NULL,
+  `deleted` BOOLEAN NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `inventory` (
+  id INT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `unit` VARCHAR(20) NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
+  `stock` DECIMAL(15,3) NOT NULL,
+  `minimum` DECIMAL(15,3) NOT NULL,
+  `deleted` BOOLEAN NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  id INT PRIMARY KEY,
+  `tableId` INT NOT NULL,
+  `customer` VARCHAR(100) NOT NULL,
+  `notes` VARCHAR(500) NOT NULL,
+  `status` VARCHAR(30) NOT NULL,
+  `sent` BOOLEAN NOT NULL,
+  `at` VARCHAR(30) NOT NULL,
+  `author` VARCHAR(40) NOT NULL,
+  FOREIGN KEY (`tableId`) REFERENCES `tables`(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `movements` (
+  id INT PRIMARY KEY,
+  `itemId` INT NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `unit` VARCHAR(20) NOT NULL,
+  `type` VARCHAR(10) NOT NULL,
+  `quantity` DECIMAL(15,3) NOT NULL,
+  `reason` VARCHAR(200) NOT NULL,
+  `actor` VARCHAR(40) NOT NULL,
+  `at` VARCHAR(30) NOT NULL,
+  FOREIGN KEY (`itemId`) REFERENCES inventory(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `invoices` (
+  id INT PRIMARY KEY,
+  `orderId` INT NOT NULL UNIQUE,
+  `tableId` INT NOT NULL,
+  `subtotal` BIGINT NOT NULL,
+  `discount` BIGINT NOT NULL,
+  `taxRate` DECIMAL(5,2) NOT NULL,
+  `tax` BIGINT NOT NULL,
+  `total` BIGINT NOT NULL,
+  `customer` VARCHAR(100) NOT NULL,
+  `document` VARCHAR(40) NOT NULL,
+  `method` VARCHAR(20) NOT NULL,
+  `received` BIGINT NOT NULL,
+  `change` BIGINT NOT NULL,
+  `actor` VARCHAR(40) NOT NULL,
+  `at` VARCHAR(30) NOT NULL,
+  FOREIGN KEY (`orderId`) REFERENCES orders(id),
+  FOREIGN KEY (`tableId`) REFERENCES `tables`(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `audit` (
+  id INT PRIMARY KEY,
+  `at` VARCHAR(30) NOT NULL,
+  `actor` VARCHAR(40) NOT NULL,
+  `role` VARCHAR(25) NOT NULL,
+  `action` VARCHAR(100) NOT NULL,
+  `record` VARCHAR(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `orders_items` (
+ parentId INT NOT NULL, productId INT NOT NULL, name VARCHAR(100) NOT NULL,
+ price BIGINT NOT NULL, quantity INT NOT NULL,
+ PRIMARY KEY (parentId, productId),
+ FOREIGN KEY (parentId) REFERENCES `orders`(id),
+ FOREIGN KEY (productId) REFERENCES products(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `invoices_items` (
+ parentId INT NOT NULL, productId INT NOT NULL, name VARCHAR(100) NOT NULL,
+ price BIGINT NOT NULL, quantity INT NOT NULL,
+ PRIMARY KEY (parentId, productId),
+ FOREIGN KEY (parentId) REFERENCES `invoices`(id),
+ FOREIGN KEY (productId) REFERENCES products(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS reservations (
+ id INT PRIMARY KEY, tableId INT NOT NULL, customer VARCHAR(100) NOT NULL,
+ partySize INT NOT NULL, at VARCHAR(30) NOT NULL, status VARCHAR(20) NOT NULL,
+ actor VARCHAR(40) NOT NULL, FOREIGN KEY (tableId) REFERENCES `tables`(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

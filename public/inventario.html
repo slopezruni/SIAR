@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIAR · Inventario</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/modulos.css">
+<link rel="stylesheet" href="css/funcional.css">
+<script src="js/shared.js" defer>
+</script>
+<script src="js/modules.js" defer>
+</script>
+<link rel="stylesheet" href="css/apariencia.css">
+<script src="js/inventory-edit.js" defer></script></head>
+<body data-page="inventario">
+<a class="skip-link" href="#main">Ir al contenido</a>
+<div class="app-layout">
+<aside class="sidebar">
+<div class="brand">
+<span class="brand-mark">s.</span>
+<div>
+<strong>SIAR</strong>
+<span>Sistema de restaurante</span>
+</div>
+</div>
+<p class="nav-caption">RESTAURANTE</p>
+<nav class="module-nav" aria-label="Navegación principal">
+<a href="index.html" data-roles="administrador mesero">Mesas</a>
+<a href="pedidos.html" data-roles="administrador mesero">Pedidos</a>
+<a href="cocina.html" data-roles="administrador cocinero">Cocina</a>
+<a href="inventario.html" data-roles="administrador cocinero">Inventario</a>
+<a href="facturacion.html" data-roles="administrador cajero">Facturación</a>
+<a href="actividad.html" data-roles="administrador">Actividad</a>
+<a href="menu.html" data-roles="administrador">Menú</a>
+<a href="usuarios.html" data-roles="administrador">Usuarios</a>
+</nav>
+<div class="sidebar-bottom">
+<p id="session-name">
+</p>
+<button type="button" class="session-button" id="change-password">Cambiar contraseña</button>
+<button type="button" class="session-button" id="recovery-settings">Código de recuperación</button>
+<button type="button" class="session-button" id="logout">Cerrar sesión</button>
+</div>
+</aside>
+<main id="main">
+<header class="topbar">
+<span>Restaurante / <strong>Inventario</strong>
+</span>
+<span id="connection">Conectando…</span>
+</header>
+<div class="page-content">
+<div class="page-heading">
+<div>
+<p class="eyebrow">SIAR</p>
+<h1>Inventario</h1>
+<p class="intro">Registra entradas y salidas de insumos. Los movimientos quedan asociados a tu usuario.</p>
+</div>
+<button class="button button-light" id="refresh">Actualizar</button>
+</div>
+<p id="page-error" class="form-error" role="alert">
+</p>
+<div class="toolbar">
+<button type="button" class="button button-primary" id="new-item">+ Nuevo insumo</button>
+<button type="button" id="new-movement" class="button button-light">Registrar movimiento</button>
+</div>
+<p class="muted">Las salidas se registran manualmente. Todavía no se descuentan ingredientes por cada pedido.</p>
+<section class="module-panel">
+<h2>Existencias</h2>
+<div id="inventory-list">
+</div>
+</section>
+<section class="module-panel">
+<h2>Últimos movimientos</h2>
+<div id="movements-list">
+</div>
+</section>
+<dialog id="item-dialog" aria-labelledby="item-title">
+<h2 id="item-title">Nuevo insumo</h2>
+<form id="item-form" class="form-grid">
+<label>Nombre<input name="name" type="text" required maxlength="100">
+</label>
+<label>Categoría<input name="category" type="text" required maxlength="100">
+</label>
+<label>Unidad<select name="unit">
+<option>unidades</option>
+<option>kg</option>
+<option>litros</option>
+</select>
+</label>
+<label>Existencia mínima<input name="minimum" type="number" required min="0" max="1000000" step="0.001" value="0">
+</label>
+<p class="muted full">Se crea con existencia cero. Registra una entrada para agregar existencias.</p>
+<p class="form-error full" role="alert">
+</p>
+<div class="actions full">
+<button type="submit" class="button button-primary" id="save-item">Guardar insumo</button>
+<button type="button" class="button button-light" data-close>Cancelar</button>
+</div>
+</form>
+</dialog>
+<dialog id="edit-stock-dialog"><h2>Editar insumo</h2><form id="edit-stock-form" class="form-grid"><label>Nombre<input name="name" required maxlength="100"></label><label>Categoría<input name="category" required maxlength="100"></label><label>Mínimo<input name="minimum" type="number" min="0" max="1000000" step="0.001" required></label><p>La unidad se conserva. Cambia las existencias registrando entradas o salidas.</p><p class="form-error full" role="alert"></p><button class="button button-primary">Guardar</button><button type="button" class="button button-light" data-close>Cancelar</button></form></dialog><dialog id="movement-dialog" aria-labelledby="movement-title">
+<h2 id="movement-title">Registrar movimiento</h2>
+<form id="movement-form" class="form-grid">
+<label>Insumo<select name="itemId">
+</select>
+</label>
+<label>Movimiento<select name="type">
+<option>Entrada</option>
+<option>Salida</option>
+</select>
+</label>
+<label>Cantidad<input name="quantity" type="number" required min="0.001" max="1000000" step="0.001">
+</label>
+<label>Motivo<input name="reason" type="text" required maxlength="200">
+</label>
+<p class="form-error full" role="alert">
+</p>
+<div class="actions full">
+<button type="submit" class="button button-primary" id="save-movement">Registrar movimiento</button>
+<button type="button" class="button button-light" data-close>Cancelar</button>
+</div>
+</form>
+</dialog>
+<footer class="page-footer">SIAR · Proyecto académico · Datos guardados en este equipo</footer>
+</div>
+</main>
+</div>
+<dialog id="password-dialog" aria-labelledby="password-title">
+<h2 id="password-title">Cambiar contraseña</h2>
+<form id="password-form" class="form-grid">
+<label>Contraseña actual<input name="current" type="password" required autocomplete="current-password">
+</label>
+<label>Nueva contraseña<input name="next" type="password" required minlength="10" autocomplete="new-password">
+</label>
+<p class="form-error full" role="alert">
+</p>
+<div class="actions full">
+<button class="button button-primary">Guardar contraseña</button>
+<button class="button button-light" type="button" data-close>Cancelar</button>
+</div>
+</form>
+</dialog>
+<dialog id="personal-recovery"><h2>Mi código de recuperación</h2><p>Genera un código y guárdalo fuera del sistema. Reemplaza cualquier código anterior.</p><form id="personal-recovery-form"><label>Contraseña actual<input type="password" name="password" required autocomplete="current-password"></label><p class="form-error" role="alert"></p><button class="button button-primary">Generar código</button></form><input id="personal-code" readonly aria-label="Nuevo código" hidden><button class="button button-light" type="button" data-close>Cerrar</button></dialog>
+<div id="notification" class="toast" role="status" hidden>
+</div>
+</body>
+</html>

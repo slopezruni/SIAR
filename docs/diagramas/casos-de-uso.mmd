@@ -1,0 +1,22 @@
+flowchart TB
+ A["«actor» Administrador"]
+ M["«actor» Mesero"]
+ C["«actor» Cocinero"]
+ K["«actor» Cajero"]
+ subgraph SIAR["Sistema SIAR"]
+  Login(["Iniciar sesión y recuperar contraseña"])
+  Usuarios(["Administrar usuarios y roles"])
+  Menu(["Administrar menú y disponibilidad"])
+  Mesas(["Crear y modificar mesas"])
+  Reserva(["Consultar, reservar y liberar mesas"])
+  Pedidos(["Crear, editar, cancelar y enviar pedidos"])
+  Cocina(["Preparar y marcar listo"])
+  Entrega(["Confirmar entrega"])
+  Stock(["Administrar insumos y movimientos"])
+  Factura(["Calcular, registrar pago y emitir comprobante"])
+  Audit(["Consultar actividad"])
+ end
+ A --> Login & Usuarios & Menu & Mesas & Reserva & Pedidos & Cocina & Entrega & Stock & Factura & Audit
+ M --> Login & Reserva & Pedidos & Entrega
+ C --> Login & Cocina & Stock
+ K --> Login & Factura
