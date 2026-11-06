@@ -1,4 +1,4 @@
-# Pruebas de la versión 4.1
+# Pruebas de la versión
 
 Ejecución: 1 de noviembre de 2026, entorno de desarrollo Linux, Node.js 24, MariaDB 10.11 y Chromium. Se usaron datos ficticios y bases aisladas. La instalación en XAMPP/Windows del equipo del usuario aún debe verificarse allí.
 
