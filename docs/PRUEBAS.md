@@ -62,5 +62,3 @@ Estas mediciones no son una prueba de carga ni garantizan el mismo rendimiento e
 | Migración | Base v4 sin campo available ni tabla reservations | OK: añade ambos y conserva los productos. |
 | Migración | Inicialización repetida sobre datos importados | OK: conserva la factura y su detalle. |
 | Funcional | Editar cantidad en pedido | OK: recalcula sin reconstruir el campo enfocado. |
-
-El comando `npm.cmd run test:coverage` ejecutó los diez casos automatizados y el recorrido de navegador sin fallos. Conserva el informe HTML como evidencia, no solo la palabra OK.
