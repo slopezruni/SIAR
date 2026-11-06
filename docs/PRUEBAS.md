@@ -1,7 +1,5 @@
 # Pruebas de la versión
 
-Ejecución: 1 de noviembre de 2026, entorno de desarrollo Linux, Node.js 24, MariaDB 10.11 y Chromium. Se usaron datos ficticios y bases aisladas. La instalación en XAMPP/Windows del equipo del usuario aún debe verificarse allí.
-
 | Tipo | Caso | Resultado observado |
 |---|---|---|
 | Unitaria | Convertir importes a centavos | OK: 15000.50 produce 1500050. |
@@ -50,7 +48,7 @@ Estas mediciones no son una prueba de carga ni garantizan el mismo rendimiento e
 - Para comprobar visualmente, repite el flujo de venta descrito en LEEME y las acciones de usuarios, menú e inventario. El recorrido de navegador está en `tests/browser.cjs`. Se puede repetir instalando Chromium con `npx.cmd playwright install chromium` y ejecutando `npm.cmd run test:browser`.
 - Para sustentar en tu equipo, captura los resultados de `npm.cmd test` y las pantallas del flujo usando datos ficticios.
 
-## Casos agregados en 4.1
+## Casos agregados
 
 | Tipo | Caso | Resultado |
 |---|---|---|
