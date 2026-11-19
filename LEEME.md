@@ -5,6 +5,8 @@ Las evidencias de cobertura de la carpeta coverage corresponden a la versión 4.
 Consulta docs/PRUEBAS.md para las comprobaciones nuevas.
 La documentación histórica de reserva básica se sustituye por docs/RESERVAS_REPORTES_DASHBOARD.md.
 
+LINK DEL SERVIDOR:  https://siar-bhp8.onrender.com
+
 # SIAR — versión 5.0 (entrega local para validar)
 
 Aplicación local para administrar mesas, pedidos, cocina, inventario, facturación, menú y usuarios. Mantiene la interfaz azul y gris de la versión anterior. JavaScript en el navegador y Node.js en el servidor; datos en MySQL/MariaDB de XAMPP.
