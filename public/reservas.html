@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f35">
+  <title>Reservas · SIAR · Mesas del restaurante</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/modulos.css">
+<link rel="stylesheet" href="css/funcional.css">
+  <script src="js/shared.js" defer></script>
+<script src="js/analytics.js" defer></script><script src="js/final-modules.js" defer></script>
+<link rel="stylesheet" href="css/apariencia.css">
+<style>.data-scroll{overflow:auto;margin:20px 0}table{width:100%;border-collapse:collapse;background:white}th,td{padding:12px;text-align:left;border-bottom:1px solid #dce2e7}th{background:#edf1f6}.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:24px 0}.metric{background:white;border:1px solid #dce2e7;padding:20px;border-radius:8px}.metric strong{display:block;font-size:26px;margin-top:8px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}input,select{padding:8px;max-width:100%}.chart-row{display:grid;grid-template-columns:minmax(130px,1fr) 2fr 50px;gap:12px;margin:12px 0}.chart-bar{background:#325a93;height:22px}button{cursor:pointer}</style></head>
+<body data-page="index">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-plan" viewBox="0 0 24 24">
+<rect x="3" y="3" width="7" height="7" rx="1.5"/>
+<rect x="14" y="3" width="7" height="7" rx="1.5"/>
+<rect x="3" y="14" width="7" height="7" rx="1.5"/>
+<rect x="14" y="14" width="7" height="7" rx="1.5"/>
+</symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+<path d="M12 20V4m-7 7 7-7 7 7"/>
+</symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24">
+<circle cx="9" cy="7" r="3"/>
+<path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/>
+</symbol>
+    <symbol id="icon-reset" viewBox="0 0 24 24">
+<path d="M3 10a9 9 0 1 1 2 9M3 4v6h6"/>
+</symbol>
+    <symbol id="icon-pointer" viewBox="0 0 24 24">
+<path d="m5 3 14 9-7 1-3 7-4-17Z"/>
+</symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Ir al plano de mesas</a>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="brand"><span class="brand-mark">s.</span><div><strong>SIAR</strong><span>Sistema de restaurante</span></div></div><p class="nav-caption">RESTAURANTE</p><nav class="module-nav" aria-label="Navegación principal">
+<a href="dashboard.html" data-roles="administrador">Dashboard</a>
+<a href="index.html" data-roles="administrador mesero">Mesas</a>
+<a href="reservas.html" data-roles="administrador mesero">Reservas</a>
+<a href="reportes.html" data-roles="administrador">Reportes</a>
+<a href="pedidos.html" data-roles="administrador mesero">Pedidos</a>
+<a href="cocina.html" data-roles="administrador cocinero">Cocina</a>
+<a href="inventario.html" data-roles="administrador cocinero">Inventario</a>
+<a href="facturacion.html" data-roles="administrador cajero">Facturación</a>
+<a href="actividad.html" data-roles="administrador">Actividad</a>
+<a href="menu.html" data-roles="administrador">Menú</a>
+<a href="usuarios.html" data-roles="administrador">Usuarios</a>
+</nav><div class="sidebar-bottom"><p id="session-name"></p><button type="button" class="session-button" id="change-password">Cambiar contraseña</button><button type="button" class="session-button" id="recovery-settings">Código de recuperación</button>
+<button type="button" class="session-button" id="logout">Cerrar sesión</button></div></aside>
+
+<main id="main"><header class="topbar"><strong>Reservas</strong><span id="connection">Conectando…</span></header><div class="page-content"><h1>Reservas</h1><p>Agenda por horarios. Una mesa puede tener varias reservas si sus intervalos no se cruzan.</p><div class="actions"><label>Fecha <input id="booking-date" type="date"></label><label>Estado <select id="booking-status"><option value="">Todos</option><option>Reservada</option><option>Atendida</option><option>Cancelada</option></select></label><button id="new-booking" class="button button-primary">Nueva reserva</button><button id="all-bookings" class="button button-light">Ver todas</button></div><p>Las reservas vencidas se conservan en el historial. No bloquean la mesa.</p><div id="booking-list"></div><p id="page-error" class="form-error" role="alert"></p></div></main>
+  </div>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+</p>
+  <noscript>
+<p class="noscript-message">Activa JavaScript para ver las mesas y cambiar de piso.</p>
+</noscript>
+<dialog id="booking-dialog"><h2 id="booking-title">Nueva reserva</h2><form id="booking-form" class="form-grid"><label>Mesa<select name="tableId" required></select></label><label>Cliente<input name="customer" maxlength="100" required></label><label>Personas<input name="partySize" type="number" min="1" max="30" step="1" required></label><label>Inicio<input name="at" type="datetime-local" required></label><label>Fin<input name="endAt" type="datetime-local" required></label><p class="form-error full" role="alert"></p><div class="actions full"><button class="button button-primary">Guardar</button><button type="button" class="button button-light" data-close>Cancelar</button></div></form></dialog><dialog id="password-dialog" aria-labelledby="password-title"><h2 id="password-title">Cambiar contraseña</h2><form id="password-form" class="form-grid"><label>Contraseña actual<input name="current" type="password" required autocomplete="current-password"></label><label>Nueva contraseña<input name="next" type="password" required minlength="10" autocomplete="new-password"></label><p class="form-error full" role="alert"></p><div class="actions full"><button class="button button-primary">Guardar contraseña</button><button class="button button-light" type="button" data-close>Cancelar</button></div></form></dialog><dialog id="personal-recovery"><h2>Mi código de recuperación</h2><p>Genera un código y guárdalo fuera del sistema. Reemplaza cualquier código anterior.</p><form id="personal-recovery-form"><label>Contraseña actual<input type="password" name="password" required autocomplete="current-password"></label><p class="form-error" role="alert"></p><button class="button button-primary">Generar código</button></form><input id="personal-code" readonly aria-label="Nuevo código" hidden><button class="button button-light" type="button" data-close>Cerrar</button></dialog>
+<div id="notification" class="toast" role="status" hidden></div></body>
+</html>
+

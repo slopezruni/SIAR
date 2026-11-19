@@ -1,0 +1,77 @@
+classDiagram
+ direction TB
+ class Usuario {
+  id: int
+  username: string
+  role: string
+  enabled: boolean
+  deleted: boolean
+ }
+ class Mesa {
+  id: int
+  floor: int
+  capacity: int
+  occupied: boolean
+ }
+ class Reserva {
+  id: int
+  customer: string
+  partySize: int
+  at: datetime
+  status: string
+ }
+ class Pedido {
+  id: int
+  customer: string
+  status: string
+  sent: boolean
+ }
+ class DetallePedido {
+  productId: int
+  quantity: int
+  price: centavos
+ }
+ class Producto {
+  id: int
+  name: string
+  category: string
+  price: centavos
+  available: boolean
+  deleted: boolean
+ }
+ class Factura {
+  id: int
+  subtotal: centavos
+  discount: centavos
+  tax: centavos
+  total: centavos
+  method: string
+ }
+ class DetalleFactura {
+  productId: int
+  quantity: int
+  price: centavos
+ }
+ class Insumo {
+  id: int
+  stock: decimal
+  minimum: decimal
+  unit: string
+  deleted: boolean
+ }
+ class Movimiento {
+  id: int
+  type: string
+  quantity: decimal
+  reason: string
+ }
+ Usuario ..> Pedido : registra
+ Usuario ..> Movimiento : registra
+ Mesa "1" -- "0..*" Reserva : recibe
+ Mesa "1" -- "0..*" Pedido : atiende
+ Pedido "1" *-- "1..*" DetallePedido : contiene
+ Producto "1" -- "0..*" DetallePedido : identifica
+ Pedido "1" -- "0..1" Factura : genera
+ Factura "1" *-- "1..*" DetalleFactura : contiene
+ Producto "1" -- "0..*" DetalleFactura : identifica
+ Insumo "1" -- "0..*" Movimiento : registra

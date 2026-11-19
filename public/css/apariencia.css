@@ -1,0 +1,135 @@
+/* Presentación general. Las funciones y los datos no se modifican aquí. */
+@media screen {
+  :root {
+    --forest: #315b7d;
+    --ink: #283139;
+    --muted: #657079;
+    --line: #d9dde1;
+    --paper: #f3f4f5;
+  }
+  body { font-family: Arial, sans-serif; font-size: 14px; }
+  h1, h2, h3 { letter-spacing: normal; }
+  h1 { font-size: 26px; font-weight: 600; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+  .app-layout { grid-template-columns: 195px minmax(0, 1fr); }
+
+  /* Menú lateral */
+  .sidebar { background: #e8ebee; color: #283139; border-right: 1px solid #ccd2d7; padding: 24px 12px; }
+  .brand { padding: 0 10px 21px; border-bottom: 1px solid #ccd2d7; }
+  .brand-mark { display: none; }
+  .brand strong { font: bold 26px Arial, sans-serif; letter-spacing: 0; color: #315b7d; }
+  .brand div > span { color: #626b72; font-size: 10px; margin-top: 5px; }
+  .nav-caption { color: #626b72; font-size: 11px; letter-spacing: 0; margin: 24px 10px 12px; }
+  .module-nav { gap: 4px; }
+  .module-nav a { color: #283139; padding: 11px 12px; border-radius: 3px; font-size: 14px; }
+  .module-nav a:hover { background: #dce3e9; border-color: transparent; color: #283139; }
+  .module-nav a[aria-current] { background: #315b7d; color: white; border-color: #315b7d; }
+  .sidebar-bottom { padding: 35px 10px 0; }
+  .sidebar-bottom p { color: #46515a; font-size: 12px; line-height: 1.6; margin: 12px 0; }
+  .session-button { color: #315b7d; font-size: 12px; padding: 8px 0; }
+  .session-button:hover { text-decoration: underline; }
+
+  /* Títulos y paneles */
+  .topbar { min-height: 52px; padding: 0 25px; font-size: 12px; }
+  #connection { color: #59636b; }
+  .page-content { padding: 26px 25px 18px; max-width: 1500px; }
+  .page-heading { margin-bottom: 22px; }
+  .eyebrow { display: none; }
+  .intro { font-size: 13px; line-height: 1.6; margin-top: 8px; }
+  .plan-panel, .detail-panel, .module-panel, .summary { border-radius: 4px; border-color: #d2d7db; box-shadow: none; }
+  .module-panel { padding: 20px; }
+  .module-panel h2 { padding-bottom: 12px; border-bottom: 1px solid #e0e3e6; margin-bottom: 18px; }
+  .summary { padding: 17px 20px; }
+  .summary-item strong { font-size: 25px; }
+  .summary-description { display: none; }
+  .detail-panel { padding: 20px; }
+  .detail-header h2 { font-size: 16px; }
+  .empty-detail { padding: 35px 0; }
+  .empty-illustration { display: none; }
+  .empty-detail p, .detail-description, .detail-help p { font-size: 12px; line-height: 1.7; }
+  .page-footer { color: #737b81; font-size: 10px; }
+  .preview-note { background: #f7f7f7; border: 1px solid #d9dde1; border-left: 3px solid #8795a1; color: #535d65; border-radius: 3px; }
+
+  /* Botones, formularios y tablas */
+  .button { border-radius: 3px; font-size: 13px; font-weight: 400; padding: 9px 13px; min-height: 39px; box-shadow: none; }
+  .toolbar > .button-primary, .actions > .button-primary { width: auto; }
+  .button-light { color: #333d45; background: #f8f8f8; border-color: #bfc7ce; }
+  .button-light:hover { background: #e8edf1; }
+  .button-primary, .toolbar .button:first-child { background: #315b7d; color: white; border-color: #315b7d; }
+  .button-primary:hover, .toolbar .button:first-child:hover { background: #25445f; }
+  input, select, textarea { border-radius: 3px; border-color: #bfc7ce; padding: 10px; font-size: 14px; font-weight: 400; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #4b84b1; outline-offset: 1px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #4b84b1; outline-offset: 3px; }
+  .form-grid label { font-size: 13px; font-weight: 400; }
+  th { text-transform: none; letter-spacing: 0; background: #eceff2; color: #3b454d; font-size: 13px; }
+  th, td { padding: 13px 10px; }
+  .badge { border-radius: 3px; padding: 4px 7px; }
+  .order-card { border-radius: 3px; background: #fff; padding: 15px; }
+  .order-card h3 { font-size: 20px; }
+  .order-card .eyebrow { display: block; letter-spacing: 0; color: #657079; }
+  .counter { border-radius: 3px; background: #e8edf1; }
+  .kanban { gap: 14px; }
+  .total { font-size: 20px; }
+  .invoice-total div:last-child { color: #283139; }
+  #admin-summary .summary-item:last-child strong { color: #283139; }
+  dialog { border-radius: 5px; border-color: #b9c2c9; box-shadow: 0 6px 25px #0002; padding: 24px; }
+  dialog::backdrop { background: #0005; }
+  dialog > h2 { margin-bottom: 20px; }
+  .toast { background: #334e63; border-radius: 4px; box-shadow: none; }
+
+  /* El plano conserva el verde y rojo para identificar las mesas. */
+  .floor-switch { border-radius: 3px; background: #eef0f2; }
+  .floor-switch button { border-radius: 2px; font-size: 12px; }
+  .floor-switch button[aria-pressed="true"] { background: #315b7d; box-shadow: none; }
+  .stairs-button { background: #edf0f2; border-color: #c2cbd2; border-radius: 4px; color: #315b7d; }
+  .stairs-button:hover { background: #dee5ea; border-color: #9eafbd; }
+  .stair-lines { background: repeating-linear-gradient(to bottom, #9aaab8 0, #9aaab8 1px, transparent 1px, transparent 5px); }
+  .table-button { border-radius: 3px; }
+  .table-number { font-size: 17px; }
+  .room-label { display: none; }
+  .plan-legend { font-size: 11px; }
+  .detail-table-number strong { font-size: 42px; }
+
+  /* Inicio de sesión */
+  .login-page { background: #f0f1f3; padding: 25px; }
+  .login-shell { display: block; max-width: 420px; border: 1px solid #c7cdd2; border-radius: 5px; background: white; box-shadow: none; }
+  .login-intro { padding: 23px 28px; background: #315b7d; color: white; }
+  .login-intro h1 { color: white; font-size: 27px; letter-spacing: 0; line-height: 1.2; }
+  .login-intro > p:not(.eyebrow) { display: block; font-size: 12px; color: #edf2f6; margin: 7px 0 0; line-height: 1.5; max-width: none; }
+  .login-card { padding: 27px 28px; }
+  .login-card h2 { font-size: 21px; }
+  .login-card .muted { font-size: 13px; }
+  .login-card label { font-size: 13px; font-weight: 400; }
+  .login-foot { font-size: 11px; color: #6e7880; border-top: 1px solid #e0e3e6; padding-top: 16px; margin-top: 24px; }
+}
+@media screen and (max-width: 1190px) {
+  .app-layout { grid-template-columns: 180px minmax(0, 1fr); }
+  .brand div > span { font-size: 9px; }
+}
+@media screen and (max-width: 700px) {
+  .app-layout { display: block; }
+  .sidebar { padding: 14px 16px; border-right: 0; border-bottom: 1px solid #c7cdd2; gap: 12px; }
+  .brand { padding: 0; border: 0; }
+  .brand strong { font-size: 22px; }
+  .sidebar-bottom { padding: 0; }
+  .sidebar-bottom p { margin: 0; }
+  .module-nav a { padding: 9px 10px; font-size: 13px; }
+  .page-content { padding: 22px 16px 16px; }
+  .topbar { padding: 0 16px; flex-wrap: wrap; gap: 8px; }
+  h1 { font-size: 23px; }
+  .module-panel { padding: 16px; }
+  .summary { padding: 15px 12px; }
+  .summary-item strong { font-size: 23px; }
+  .login-page { padding: 16px; }
+  .login-card { padding: 24px; }
+  .login-intro { padding: 21px 24px; }
+}
+
+@media screen {
+.table-button.reserved {background:#fff1bd;border-color:#a67915;color:#604400;}
+.status-label.reserved {color:#805a00;}
+#reservation-detail {overflow-wrap:anywhere;}
+#record-list {margin-top:16px;}
+#new-record {width:auto;}
+}

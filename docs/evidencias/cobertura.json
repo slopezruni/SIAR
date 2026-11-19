@@ -1,0 +1,36 @@
+{
+  "alcance": "server.js, services, database, public/js, scripts/init-db.js y scripts/import-v3.js",
+  "herramienta": "c8 + cobertura V8 de Node y Chromium",
+  "resultado": {
+    "lines": {
+      "total": 1035,
+      "covered": 1023,
+      "skipped": 0,
+      "pct": 98.84
+    },
+    "statements": {
+      "total": 1035,
+      "covered": 1023,
+      "skipped": 0,
+      "pct": 98.84
+    },
+    "functions": {
+      "total": 99,
+      "covered": 98,
+      "skipped": 0,
+      "pct": 98.98
+    },
+    "branches": {
+      "total": 920,
+      "covered": 773,
+      "skipped": 0,
+      "pct": 84.02
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  }
+}

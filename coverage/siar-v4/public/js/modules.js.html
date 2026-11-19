@@ -1,0 +1,694 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for siar-v4/public/js/modules.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">siar-v4/public/js</a> modules.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>203/203</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">82.28% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>144/175</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>19/19</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>203/203</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+// Este archivo conecta cada pantalla con el servidor. Los permisos se validan también allí.
+(async function () {
+  await Siar.ready;
+  if (!Siar.user) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const $ = selector =&gt; document.querySelector(selector);
+  const esc = Siar.escape;
+  const money = Siar.money;
+  const date = Siar.date;
+  const page = document.body.dataset.page;
+  const isAdmin = Siar.user.role === 'administrador';
+  const button = (label, action, id) =&gt; `&lt;button type="button" class="button button-light" data-action="${action}" data-id="${id}"&gt;${label}&lt;/button&gt;`;
+  const badge = state =&gt; `&lt;span class="badge state-${state.replaceAll(' ', '-')}"&gt;${esc(state)}&lt;/span&gt;`;
+  const table = (headers, rows, empty = 'Todavía no hay registros.') =&gt; rows.length ? `&lt;div class="data-scroll" tabindex="0"&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;${headers.map(h =&gt; `&lt;th scope="col"&gt;${h}&lt;/th&gt;`).join('')}&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${rows.map(r =&gt; `&lt;tr&gt;${r.map(c =&gt; `&lt;td&gt;${c}&lt;/td&gt;`).join('')}&lt;/tr&gt;`).join('')}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;` : `&lt;p class="empty-state"&gt;${empty}&lt;/p&gt;`;
+  const total = order =&gt; order.items.reduce((sum, i) =&gt; sum + i.price * i.quantity, 0);
+  const errorIn = (form, error = '') =&gt; { form.querySelector('.form-error').textContent = error.message || error; };
+  const option = (id, name) =&gt; `&lt;option value="${id}"&gt;${esc(name)}&lt;/option&gt;`;
+  let editingId = null;
+  let draft = [];
+  let invoiceDraft = [];
+  let invoiceOrderId = null;
+  let previewSequence = 0;
+  let previewTimer;
+&nbsp;
+  function renderOrders(state) {
+    const all = $('#order-filter').value === 'all';
+    const orders = [...state.orders].reverse().filter(o =&gt; all || !['Facturado', 'Cancelado'].includes(o.status));
+    $('#order-list').innerHTML = table(['Pedido / cliente', 'Mesa', 'Estado', 'Total', 'Acciones'], orders.map(o =&gt; {
+      let actions = button('Detalle', 'detail', o.id);
+      if (o.status === 'Pendiente') {
+        if (!o.sent) actions += button('Editar', 'edit', o.id) + button('Enviar a cocina', 'send', o.id);
+        actions += button('Cancelar', 'cancel', o.id);
+      }
+      if (o.status === 'Listo') actions += button('Entregar', 'deliver', o.id);
+      if (o.status === 'Entregado' &amp;&amp; isAdmin) actions += '&lt;a class="button button-light" href="facturacion.html"&gt;Facturar&lt;/a&gt;';
+      return [`&lt;strong&gt;#${o.id}&lt;/strong&gt;&lt;br&gt;${esc(o.customer <span class="branch-0 cbranch-no" title="branch not covered" >|| 'Sin nombre')</span>}&lt;small&gt;${esc(o.author)}&lt;/small&gt;`, String(o.tableId).padStart(2, '0'), badge(o.status) + (o.status === 'Pendiente' ? `&lt;small&gt;${o.sent ? 'Enviado a cocina' : 'Por enviar'}&lt;/small&gt;` : ''), money(total(o)), `&lt;div class="row-actions"&gt;${actions}&lt;/div&gt;`];
+    }), 'Aún no hay pedidos. Crea el primero con “Nuevo pedido”.');
+  }
+  function openOrder(id = null) {
+    const state = Siar.state;
+    const order = state.orders.find(o =&gt; o.id === id);
+    editingId = id; draft = order ? structuredClone(order.items) : [];
+    const form = $('#order-form'); form.reset(); errorIn(form);
+    $('#order-title').textContent = id ? 'Editar pedido #' + id : 'Nuevo pedido';
+    const available = state.tables.filter(t =&gt; !state.reservations.some(r=&gt;r.tableId===t.id&amp;&amp;r.status==='Reservada')).filter(t =&gt; !state.orders.some(o =&gt; o.tableId === t.id &amp;&amp; !['Facturado', 'Cancelado'].includes(o.status) &amp;&amp; o.id !== id));
+    form.elements.tableId.innerHTML = available.map(t =&gt; option(t.id, `Mesa ${t.id} · Piso ${t.floor}${t.occupied ? ' · Ocupada' : ''}`)).join('');
+    form.elements.customer.value = order?.customer || ''; form.elements.notes.value = order?.notes || '';
+    if (order) form.elements.tableId.value = order.tableId;
+    else { const proposed = new URLSearchParams(location.search).get('mesa'); if (available.some(t =&gt; String(t.id) === proposed)) <span class="branch-0 cbranch-no" title="branch not covered" >form.elements.tableId.value = proposed; </span>}
+    $('#product-choice').innerHTML = state.products.filter(p=&gt;p.available).map(p =&gt; option(p.id, p.name + ' · ' + money(p.price))).join('');
+    $('#product-quantity').value = 1;
+    $('#save-order').disabled = !available.length;
+    if (!available.length) <span class="branch-0 cbranch-no" title="branch not covered" >errorIn(form, 'Todas las mesas tienen un pedido activo.');</span>
+    renderDraft(); $('#order-dialog').showModal();
+  }
+  function renderDraft() {
+    $('#draft-items').innerHTML = table(['Producto', 'Cantidad', 'Importe', ''], draft.map(i =&gt; [esc(i.name), `&lt;input class="quantity" type="number" min="1" max="1000" step="1" aria-label="Cantidad de ${esc(i.name)}" value="${i.quantity}" data-product="${i.productId}"&gt;`, money(i.quantity * i.price), button('Quitar', 'remove-product', i.productId)]), 'Agrega al menos un producto.');
+    $('#draft-total').textContent = 'Total: ' + money(total({ items: draft }));
+  }
+  function showDetail(id) {
+    const order = Siar.state.orders.find(o =&gt; o.id === id); if (!order) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+    $('#detail-heading').textContent = 'Pedido #' + id + ' · Mesa ' + order.tableId;
+    $('#order-detail-body').innerHTML = `&lt;p&gt;${esc(order.customer <span class="branch-0 cbranch-no" title="branch not covered" >|| 'Sin nombre')</span>} · ${esc(order.status)}&lt;/p&gt;${table(['Producto', 'Cantidad', 'Importe'], order.items.map(i =&gt; [esc(i.name), i.quantity, money(i.price * i.quantity)]))}&lt;p class="total"&gt;Total: ${money(total(order))}&lt;/p&gt;&lt;p&gt;Observaciones: ${esc(order.notes <span class="branch-0 cbranch-no" title="branch not covered" >|| 'Sin observaciones')</span>}&lt;/p&gt;`;
+    $('#order-detail').showModal();
+  }
+  function renderKitchen(state) {
+    $('#kitchen-board').innerHTML = ['Pendiente', 'En preparación', 'Listo'].map(status =&gt; {
+      const orders = state.orders.filter(o =&gt; o.sent &amp;&amp; o.status === status);
+      return `&lt;section class="module-panel"&gt;&lt;h2&gt;${status} &lt;span class="counter"&gt;${orders.length}&lt;/span&gt;&lt;/h2&gt;${orders.map(o =&gt; `&lt;article class="order-card"&gt;&lt;span class="eyebrow"&gt;PEDIDO #${o.id}&lt;/span&gt;&lt;h3&gt;Mesa ${o.tableId}&lt;/h3&gt;&lt;ul&gt;${o.items.map(i =&gt; `&lt;li&gt;${i.quantity} × ${esc(i.name)}&lt;/li&gt;`).join('')}&lt;/ul&gt;&lt;p class="muted"&gt;${esc(o.notes <span class="branch-0 cbranch-no" title="branch not covered" >|| 'Sin observaciones')</span>}&lt;/p&gt;&lt;small&gt;${esc(date(o.at))}&lt;/small&gt;${status === 'Pendiente' ? button('Iniciar preparación', 'prepare', o.id) : status === 'En preparación' ? button('Marcar listo', 'ready', o.id) : '&lt;p class="ready-note"&gt;El mesero puede entregarlo.&lt;/p&gt;'}&lt;/article&gt;`).join('') || '&lt;p class="empty-state"&gt;Sin pedidos en este estado.&lt;/p&gt;'}&lt;/section&gt;`;
+    }).join('');
+  }
+  function renderInventory(state) {
+    $('#inventory-list').innerHTML = table(['Insumo', 'Categoría', 'Existencia', 'Mínimo', 'Estado', 'Acciones'], state.inventory.map(i =&gt; [esc(i.name), esc(i.category), `${i.stock} ${esc(i.unit)}`, `${i.minimum} ${esc(i.unit)}`, badge(i.stock &lt;= i.minimum ? 'Stock bajo' : 'Disponible'), `&lt;button class="button button-light" data-edit-stock="${i.id}"&gt;Editar&lt;/button&gt; &lt;button class="button button-light" data-delete-stock="${i.id}"&gt;Eliminar&lt;/button&gt;`]));
+    $('#movements-list').innerHTML = table(['Fecha', 'Insumo', 'Movimiento', 'Cantidad', 'Motivo', 'Usuario'], state.movements.map(m =&gt; [esc(date(m.at)), esc(m.name), esc(m.type), `${m.quantity} ${esc(m.unit)}`, esc(m.reason), esc(m.actor)]));
+  }
+  function invoiceBody() {
+    const f = $('#invoice-form');
+    return { orderId: Number(f.elements.orderId.value), customer: f.elements.customer.value, document: f.elements.document.value, method: f.elements.method.value, received: f.elements.received.value, discount: f.elements.discount.value, taxRate: Number(f.elements.taxRate.value), items: invoiceDraft.map(i =&gt; ({ productId: i.productId, quantity: i.quantity, unitPrice: i.unitPrice })) };
+  }
+  function selectInvoiceOrder() {
+    const f = $('#invoice-form'); const o = Siar.state.orders.find(o =&gt; o.id === Number(f.elements.orderId.value));
+    invoiceOrderId = o?.id || null; previewSequence++;
+    invoiceDraft = o ? o.items.map(i =&gt; ({ ...i, unitPrice: (i.price / 100).toFixed(2) })) : [];
+    f.elements.customer.value = o?.customer || ''; f.elements.document.value = ''; f.elements.discount.value = '0'; f.elements.taxRate.value = '0'; f.elements.received.value = '';
+    errorIn(f);
+    $('#invoice-items').innerHTML = invoiceDraft.length ? `&lt;div class="invoice-lines"&gt;${invoiceDraft.map(i =&gt; `&lt;div class="invoice-line"&gt;&lt;strong&gt;${esc(i.name)}&lt;/strong&gt;&lt;label&gt;Cantidad&lt;input type="number" min="1" max="1000" step="1" required value="${i.quantity}" data-invoice-id="${i.productId}" data-field="quantity"&gt;&lt;/label&gt;&lt;label&gt;Precio unitario ($ COP)&lt;input type="number" min="0" step="0.01" required value="${i.unitPrice}" data-invoice-id="${i.productId}" data-field="unitPrice"&gt;&lt;/label&gt;&lt;/div&gt;`).join('')}&lt;/div&gt;` : '&lt;p class="empty-state"&gt;No hay pedidos entregados pendientes de cobro.&lt;/p&gt;';
+    $('#issue-invoice').disabled = !o; $('#calculate-invoice').disabled = !o;
+    if (o) calculateInvoice(); else $('#invoice-preview').textContent = 'El pedido aparecerá aquí cuando el mesero lo marque como entregado.';
+  }
+  async function calculateInvoice() {
+    if (!invoiceOrderId) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+    const sequence = ++previewSequence;
+    try {
+      const data = await Siar.api('/api/invoices/preview', 'POST', invoiceBody());
+      if (sequence !== previewSequence) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+      $('#invoice-preview').innerHTML = `&lt;dl class="invoice-total"&gt;&lt;div&gt;&lt;dt&gt;Subtotal&lt;/dt&gt;&lt;dd&gt;${money(data.subtotal)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Descuento&lt;/dt&gt;&lt;dd&gt;− ${money(data.discount)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Impuesto (${data.taxRate} %)&lt;/dt&gt;&lt;dd&gt;${money(data.tax)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Total&lt;/dt&gt;&lt;dd&gt;${money(data.total)}&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;p class="muted"&gt;Valor exacto para el pago: ${(data.total / 100).toFixed(2)}&lt;/p&gt;`;
+      errorIn($('#invoice-form'));
+    } <span class="branch-0 cbranch-no" title="branch not covered" >catch(error) { if (sequence === previewSequence) { $('#invoice-preview').textContent = 'Revisa los valores antes de emitir.'; errorIn($('#invoice-form'), error); } }</span>
+  }
+  function renderInvoices(state) {
+    const select = $('#invoice-order');
+    const eligible = state.orders.filter(o =&gt; o.status === 'Entregado');
+    const last = select.value;
+    // Actualizar la lista sin borrar los precios que el usuario está editando.
+    select.innerHTML = '&lt;option value=""&gt;Selecciona un pedido&lt;/option&gt;' + eligible.map(o =&gt; option(o.id, `#${o.id} · Mesa ${o.tableId} · ${o.customer <span class="branch-0 cbranch-no" title="branch not covered" >|| 'Sin nombre'}</span>`)).join('');
+    if (eligible.some(o =&gt; String(o.id) === last)) <span class="branch-0 cbranch-no" title="branch not covered" >select.value = last;</span>
+    else if (invoiceOrderId) <span class="branch-0 cbranch-no" title="branch not covered" >{ select.value = ''; selectInvoiceOrder(); }</span>
+    $('#invoice-history').innerHTML = table(['Comprobante', 'Fecha', 'Cliente', 'Pedido', 'Total', ''], [...state.invoices].reverse().map(i =&gt; [`SIAR-${String(i.id).padStart(4, '0')}`, esc(date(i.at)), esc(i.customer), '#' + i.orderId, money(i.total), button('Ver / imprimir', 'receipt', i.id)]));
+  }
+  function showReceipt(invoice) {
+    $('#receipt').innerHTML = `&lt;p class="eyebrow"&gt;SIAR · COMPROBANTE ACADÉMICO&lt;/p&gt;&lt;h3&gt;SIAR-${String(invoice.id).padStart(4, '0')}&lt;/h3&gt;&lt;p&gt;Sin validez fiscal · No es factura electrónica DIAN&lt;/p&gt;&lt;p&gt;${esc(date(invoice.at))}&lt;br&gt;Cliente: ${esc(invoice.customer)}&lt;br&gt;Documento: ${esc(invoice.document <span class="branch-0 cbranch-no" title="branch not covered" >|| 'No indicado')</span>}&lt;br&gt;Pedido #${invoice.orderId} · Mesa ${invoice.tableId}&lt;/p&gt;${table(['Producto', 'Cant.', 'Precio', 'Importe'], invoice.items.map(i =&gt; [esc(i.name), i.quantity, money(i.price), money(i.price * i.quantity)]))}&lt;dl class="invoice-total"&gt;&lt;div&gt;&lt;dt&gt;Subtotal&lt;/dt&gt;&lt;dd&gt;${money(invoice.subtotal)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Descuento&lt;/dt&gt;&lt;dd&gt;${money(invoice.discount)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Impuesto (${invoice.taxRate} %)&lt;/dt&gt;&lt;dd&gt;${money(invoice.tax)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Total pagado&lt;/dt&gt;&lt;dd&gt;${money(invoice.total)}&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;p&gt;Medio: ${esc(invoice.method)}&lt;br&gt;Recibido: ${money(invoice.received)}&lt;br&gt;Cambio: ${money(invoice.change)}&lt;br&gt;Registrado por: ${esc(invoice.actor)}&lt;/p&gt;`;
+    $('#receipt-dialog').showModal();
+  }
+  function renderAudit(state) {
+    $('#admin-summary').innerHTML = `&lt;div class="summary-item"&gt;&lt;span&gt;Pedidos activos&lt;/span&gt;&lt;strong&gt;${state.orders.filter(o =&gt; !['Cancelado', 'Facturado'].includes(o.status)).length}&lt;/strong&gt;&lt;/div&gt;&lt;div class="summary-item"&gt;&lt;span&gt;Comprobantes&lt;/span&gt;&lt;strong&gt;${state.invoices.length}&lt;/strong&gt;&lt;/div&gt;&lt;div class="summary-item"&gt;&lt;span&gt;Total cobrado&lt;/span&gt;&lt;strong&gt;${money(state.invoices.reduce((sum, i) =&gt; sum + i.total, 0))}&lt;/strong&gt;&lt;/div&gt;`;
+    $('#audit-list').innerHTML = table(['Fecha', 'Usuario', 'Rol', 'Acción', 'Referencia'], state.audit.map(a =&gt; [esc(date(a.at)), esc(a.actor), esc(a.role), esc(a.action), esc(a.record)]));
+  }
+  const renderers = { pedidos: renderOrders, cocina: renderKitchen, inventario: renderInventory, facturacion: renderInvoices, actividad: renderAudit };
+  Siar.listeners.push(renderers[page]);
+  renderers[page](Siar.state);
+&nbsp;
+  document.addEventListener('click', e =&gt; {
+    const b = e.target.closest('[data-action]'); if (!b) return;
+    const id = Number(b.dataset.id); const action = b.dataset.action;
+    if (action === 'detail') return showDetail(id);
+    if (action === 'edit') return openOrder(id);
+    if (action === 'remove-product') <span class="branch-0 cbranch-no" title="branch not covered" >{ draft = draft.filter(i =&gt; i.productId !== id); return renderDraft(); }</span>
+    if (action === 'receipt') return showReceipt(Siar.state.invoices.find(i =&gt; i.id === id));
+    if (action === 'cancel' <span class="branch-0 cbranch-no" title="branch not covered" >&amp;&amp; !confirm('¿Cancelar este pedido?'))</span> <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+    Siar.action(b, async () =&gt; { await Siar.api(`/api/orders/${id}/action`, 'POST', { action }); Siar.notify('Pedido actualizado.'); });
+  });
+  if (page === 'pedidos') {
+    $('#new-order').addEventListener('click', () =&gt; openOrder());
+    $('#order-filter').addEventListener('change', () =&gt; renderOrders(Siar.state));
+    $('#add-product').addEventListener('click', () =&gt; {
+      const quantity = Number($('#product-quantity').value);
+      if (!Number.isInteger(quantity) || quantity &lt; 1 || quantity &gt; 1000) <span class="branch-0 cbranch-no" title="branch not covered" >return errorIn($('#order-form'), 'La cantidad debe ser un entero entre 1 y 1000.');</span>
+      const p = Siar.state.products.find(p =&gt; p.id === Number($('#product-choice').value) &amp;&amp; p.available);
+      if(!p)<span class="branch-0 cbranch-no" title="branch not covered" >return errorIn($('#order-form'),'No hay productos disponibles para agregar.');</span>
+      const item = draft.find(i =&gt; i.productId === p.id);
+      if (item <span class="branch-0 cbranch-no" title="branch not covered" >&amp;&amp; item.quantity + quantity &gt; 1000)</span> <span class="branch-0 cbranch-no" title="branch not covered" >return errorIn($('#order-form'), 'Máximo 1000 unidades por producto.');</span>
+      if (item) <span class="branch-0 cbranch-no" title="branch not covered" >item.quantity += quantity; </span>else draft.push({ productId: p.id, name: p.name, price: p.price, quantity });
+      errorIn($('#order-form')); renderDraft();
+    });
+    $('#draft-items').addEventListener('change', e =&gt; {
+      if (!e.target.matches('[data-product]')) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+      const quantity = Number(e.target.value);
+      const item = draft.find(i =&gt; i.productId === Number(e.target.dataset.product));
+      if (!Number.isInteger(quantity) || quantity &lt; 1 || quantity &gt; 1000) <span class="branch-0 cbranch-no" title="branch not covered" >{ errorIn($('#order-form'), 'Cantidad inválida.'); e.target.value=item.quantity; return; }</span>
+      item.quantity=quantity;
+      e.target.closest('tr').children[2].textContent=money(item.quantity*item.price);
+      $('#draft-total').textContent='Total: '+money(total({items:draft}));
+      errorIn($('#order-form'));
+    });
+    $('#order-form').addEventListener('submit', async e =&gt; {
+      e.preventDefault(); const f = e.currentTarget; const b = $('#save-order'); b.disabled = true; errorIn(f);
+      try {
+        await Siar.api('/api/orders' + (editingId ? '/' + editingId : ''), editingId ? 'PUT' : 'POST', { tableId: Number(f.elements.tableId.value), customer: f.elements.customer.value, notes: f.elements.notes.value, items: draft.map(i =&gt; ({ productId: i.productId, quantity: i.quantity })) });
+        f.closest('dialog').close(); await Siar.refresh(); Siar.notify('Pedido guardado. Ya puedes enviarlo a cocina.');
+      } <span class="branch-0 cbranch-no" title="branch not covered" >catch(error) { errorIn(f, error); } </span>finally { b.disabled = false; }
+    });
+  }
+  if (page === 'inventario') {
+    $('#new-item').addEventListener('click', () =&gt; { $('#item-form').reset(); errorIn($('#item-form')); $('#item-dialog').showModal(); });
+    $('#new-movement').addEventListener('click', () =&gt; {
+      const f = $('#movement-form'); f.reset(); errorIn(f);
+      f.elements.itemId.innerHTML = Siar.state.inventory.map(i =&gt; option(i.id, `${i.name} · ${i.stock} ${i.unit}`)).join('');
+      $('#movement-dialog').showModal();
+    });
+    for (const [selector, route, makeBody] of [
+      ['#item-form', '/api/inventory', f =&gt; ({ name: f.elements.name.value, category: f.elements.category.value, unit: f.elements.unit.value, minimum: Number(f.elements.minimum.value) })],
+      ['#movement-form', '/api/movements', f =&gt; ({ itemId: Number(f.elements.itemId.value), type: f.elements.type.value, quantity: Number(f.elements.quantity.value), reason: f.elements.reason.value })]
+    ]) $(selector).addEventListener('submit', async e =&gt; {
+      e.preventDefault(); const f = e.currentTarget; const b = f.querySelector('button[type="submit"]'); b.disabled = true; errorIn(f);
+      try { await Siar.api(route, 'POST', makeBody(f)); f.closest('dialog').close(); await Siar.refresh(); Siar.notify('Registro guardado.'); }
+<span class="branch-0 cbranch-no" title="branch not covered" >      catch(error) { errorIn(f, error); } </span>finally { b.disabled = false; }
+    });
+  }
+  if (page === 'facturacion') {
+    selectInvoiceOrder();
+    $('#invoice-order').addEventListener('change', selectInvoiceOrder);
+    $('#invoice-items').addEventListener('input', e =&gt; {
+      const input = e.target; if (!input.dataset.invoiceId) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+      const item = invoiceDraft.find(i =&gt; i.productId === Number(input.dataset.invoiceId));
+      item[input.dataset.field] = input.dataset.field === 'quantity' <span class="branch-0 cbranch-no" title="branch not covered" >? Number(input.value) </span>: input.value;
+    });
+    $('#invoice-form').addEventListener('input', e =&gt; {
+      if (e.target.matches('[data-invoice-id], [name="taxRate"], [name="discount"]')) { previewSequence++; clearTimeout(previewTimer); previewTimer = setTimeout(calculateInvoice, 250); }
+    });
+    $('#calculate-invoice').addEventListener('click', calculateInvoice);
+    $('#invoice-form').addEventListener('submit', async e =&gt; {
+      e.preventDefault(); const f = e.currentTarget; const b = $('#issue-invoice'); errorIn(f);
+      if (!confirm('¿Registrar el pago y emitir el comprobante con estos valores? No podrás cobrar este pedido otra vez.')) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+      b.disabled = true;
+      try {
+        const invoice = await Siar.api('/api/invoices', 'POST', invoiceBody());
+        clearTimeout(previewTimer); previewSequence++;
+        f.reset(); invoiceOrderId = null; await Siar.refresh(); selectInvoiceOrder(); showReceipt(invoice);
+      } <span class="branch-0 cbranch-no" title="branch not covered" >catch(error) { errorIn(f, error); } </span>finally { b.disabled = !invoiceOrderId; }
+    });
+    $('#print-receipt').addEventListener('click', () =&gt; window.print());
+  }
+})();
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-11-01T19:54:37.800Z
+            </div>
+        <script src="../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
+    </body>
+</html>
+    

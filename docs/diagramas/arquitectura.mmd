@@ -1,0 +1,16 @@
+flowchart TB
+ subgraph P["Presentación"]
+  HTML["public: HTML y CSS"] --> JS["public/js: interacción y solicitudes"]
+ end
+ subgraph A["Aplicación"]
+  API["server.js: rutas, sesiones y coordinación"]
+ end
+ subgraph D["Dominio"]
+  RULES["services: validaciones, ventas, mesas y reservas"]
+ end
+ subgraph DATA["Persistencia"]
+  REPO["database/db.js: lectura y transacciones"] --> SQL[("MySQL / MariaDB")]
+ end
+ JS --> API
+ API --> RULES
+ API --> REPO

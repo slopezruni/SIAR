@@ -1,0 +1,23 @@
+sequenceDiagram
+ actor M as Mesero
+ participant UI as Interfaz
+ participant API as Servidor Node
+ participant DB as MySQL
+ actor C as Cocinero
+ M->>UI: Crear pedido y enviar
+ UI->>API: Validar mesa, productos y permiso
+ API->>DB: Guardar pedido y ocupar mesa
+ DB-->>API: Confirmación
+ API-->>UI: Pedido enviado
+ C->>UI: Iniciar preparación y marcar listo
+ UI->>API: Cambiar estado
+ API->>DB: Guardar estado
+ M->>UI: Confirmar entrega
+ UI->>API: Marcar Entregado
+ API->>DB: Guardar entrega
+ Note over UI,API: Cajero o administrador abre Facturación
+ UI->>API: Enviar cliente, valores y pago
+ API->>API: Calcular total y validar pago
+ API->>DB: Transacción: factura, pedido Facturado y mesa libre
+ DB-->>API: Confirmación
+ API-->>UI: Comprobante para imprimir
