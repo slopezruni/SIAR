@@ -40,28 +40,32 @@ function normalize(db) {
 }
 
 async function open(create = false) {
-  connection = await mysql.createConnection({
+  const poolOptions = {
     ...config,
-    database: create ? undefined : config.database,
     decimalNumbers: true,
     enableKeepAlive: true,
-    keepAliveInitialDelay: 10000
-  });
+    keepAliveInitialDelay: 10000,
+    waitForConnections: true,
+    connectionLimit: 5
+  };
 
   if (create) {
+    const tempPool = mysql.createPool({ ...poolOptions, database: undefined });
     try {
-      await connection.query(
+      await tempPool.query(
         `CREATE DATABASE IF NOT EXISTS \`${config.database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
       );
     } catch (err) {
       if (err.code !== 'ER_DBACCESS_DENIED_ERROR' && err.code !== 'ER_ACCESS_DENIED_ERROR') {
+        await tempPool.end();
         throw err;
       }
     }
-    await connection.query(`USE \`${config.database}\``);
+    await tempPool.end();
   }
 
-  // En local bloquea múltiples instancias; en la nube se puede desactivar con DB_SKIP_LOCK=true.
+  connection = mysql.createPool(poolOptions);
+
   if (process.env.DB_SKIP_LOCK !== 'true') {
     const [[lock]] = await connection.execute('SELECT GET_LOCK(?, 5) AS acquired', ['siar_' + config.database]);
     if (lock.acquired !== 1) {
@@ -108,17 +112,18 @@ async function load() {
 
 async function save(db, replaceEmpty = false) {
   normalize(db);
-  await connection.beginTransaction();
+  const conn = await connection.getConnection();
   try {
+    await conn.beginTransaction();
     if (replaceEmpty) {
       for (const table of ['reservations', 'invoices_items', 'orders_items', 'invoices', 'movements', 'orders', 'audit', 'inventory', 'products', 'tables', 'users', 'meta']) {
-        await connection.query('DELETE FROM `' + table + '`');
+        await conn.query('DELETE FROM `' + table + '`');
       }
     }
     for (const [table, fields] of Object.entries(columns)) {
       for (const row of db[table]) {
         const keys = ['id', ...fields];
-        await connection.execute(
+        await conn.execute(
           `INSERT INTO \`${table}\` (${keys.map(k => '`' + k + '`').join(',')}) VALUES (${keys.map(() => '?').join(',')}) ON DUPLICATE KEY UPDATE ${fields.map(k => '`' + k + '`=VALUES(`' + k + '`)').join(',')}`,
           keys.map(k => row[k] === undefined ? null : typeof row[k] === 'boolean' ? Number(row[k]) : k === 'record' ? String(row[k]) : row[k])
         );
@@ -126,23 +131,27 @@ async function save(db, replaceEmpty = false) {
     }
     for (const table of ['orders', 'invoices']) {
       for (const o of db[table]) {
-        await connection.execute(`DELETE FROM \`${table}_items\` WHERE parentId=?`, [o.id]);
+        await conn.execute(`DELETE FROM \`${table}_items\` WHERE parentId=?`, [o.id]);
         for (const i of o.items) {
-          await connection.execute(
+          await conn.execute(
             `INSERT INTO \`${table}_items\` (parentId,productId,name,price,quantity) VALUES (?,?,?,?,?)`,
             [o.id, i.productId, i.name, i.price, i.quantity]
           );
         }
       }
     }
-    await connection.execute('INSERT INTO meta (id,version) VALUES (1,?) ON DUPLICATE KEY UPDATE version=VALUES(version)', [db.version]);
-    await connection.commit();
+    await conn.execute('INSERT INTO meta (id,version) VALUES (1,?) ON DUPLICATE KEY UPDATE version=VALUES(version)', [db.version]);
+    await conn.commit();
   } catch (e) {
-    await connection.rollback();
+    await conn.rollback();
     throw e;
+  } finally {
+    conn.release();
   }
 }
 
-async function close() { if (connection) await connection.end(); }
+async function close() {
+  if (connection) await connection.end();
+}
 
 module.exports = { open, load, save, close, normalize, config };
