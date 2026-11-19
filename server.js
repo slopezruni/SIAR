@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const PORT = Number(process.env.PORT || 3000);
-const HOST = '127.0.0.1';
+const HOST = process.env.HOST || (process.env.RENDER || process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1');
 const storage = require('./database/db');
 const restaurant = require('./services/restaurant');
 const PUBLIC = path.join(__dirname, 'public');
@@ -15,6 +15,9 @@ const attempts = new Map();
 const roles = ['administrador', 'cajero', 'mesero', 'cocinero'];
 const active = o => !['Cancelado', 'Facturado'].includes(o.status);
 
+function clientIp(req) {
+  return (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress;
+}
 function passwordHash(password, salt) {
   return crypto.scryptSync(password, salt, 64).toString('hex');
 }
@@ -38,7 +41,7 @@ function initialData() {
   };
 }
 let db;
-const setupToken = crypto.randomBytes(16).toString('hex');
+const setupToken = process.env.SETUP_TOKEN || crypto.randomBytes(16).toString('hex');
 
 const {fail,allow,textValue,numberValue,money,nextId,find}=require('./services/validation');
 function publicUser(u) { return { id: u.id, username: u.username, name: u.name, role: u.role }; }
@@ -66,7 +69,7 @@ async function readBody(req) {
   catch { fail('JSON inválido.'); }
 }
 function throttle(req, route) {
-  const key = route + ':' + req.socket.remoteAddress;
+  const key = route + ':' + clientIp(req);
   let a=attempts.get(key);
   if(!a || a.until < Date.now()) { a={count:0,until:Date.now()+60000}; attempts.set(key,a); }
   if(++a.count > 10) fail('Demasiados intentos. Espera un minuto.',429);
@@ -94,8 +97,10 @@ async function api(req, res, url) {
   const method = req.method;
   const route = url.pathname;
   const write = method !== 'GET';
+  const secureFlag = req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
   if (!['GET', 'POST', 'PUT', 'DELETE'].includes(method)) fail('Método no permitido.', 405);
-  if (write && req.headers.origin && req.headers.origin !== 'http://' + req.headers.host) fail('Origen no permitido.', 403);
+  const allowedOrigins = [`http://${req.headers.host}`, `https://${req.headers.host}`];
+  if (write && req.headers.origin && !allowedOrigins.includes(req.headers.origin)) fail('Origen no permitido.', 403);
   if (write && req.headers['sec-fetch-site'] === 'cross-site') fail('Origen no permitido.', 403);
   if (route === '/api/setup' && method === 'GET') return send(res,200,{needsAdmin:db.users.length===0});
   if (['/api/register','/api/recover'].includes(route) && method === 'POST') {
@@ -129,7 +134,7 @@ async function api(req, res, url) {
     const body = await readBody(req);
     const username = textValue(body.username, 'usuario', 40).toLowerCase();
     const password = textValue(body.password, 'contraseña', 200);
-    const key = req.socket.remoteAddress;
+    const key = clientIp(req);
     let rate = attempts.get(key);
     if (!rate || rate.until < Date.now()) { rate = { count: 0, until: Date.now() + 60000 }; attempts.set(key, rate); }
     if (rate.count >= 15) fail('Demasiados intentos. Espera un minuto.', 429);
@@ -141,7 +146,7 @@ async function api(req, res, url) {
     const token = crypto.randomBytes(32).toString('hex');
     const csrf = crypto.randomBytes(24).toString('hex');
     sessions.set(token, { userId: user.id, csrf, expires: Date.now() + 8 * 3600000 });
-    res.setHeader('Set-Cookie', `siar_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800`);
+    res.setHeader('Set-Cookie', `siar_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800${secureFlag}`);
     return send(res, 200, { user: publicUser(user), csrf });
   }
   const session = currentSession(req);
@@ -150,7 +155,7 @@ async function api(req, res, url) {
   if (write && req.headers['x-csrf-token'] !== session.csrf) fail('Sesión inválida. Vuelve a iniciar sesión.', 403);
   if (route === '/api/me' && method === 'GET') return send(res, 200, { user: publicUser(user), csrf: session.csrf });
   if (route === '/api/logout' && method === 'POST') {
-    sessions.delete(session.token); res.setHeader('Set-Cookie', 'siar_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0'); return send(res, 200, { ok: true });
+    sessions.delete(session.token); res.setHeader('Set-Cookie', `siar_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0${secureFlag}`); return send(res, 200, { ok: true });
   }
   if (route === '/api/state' && method === 'GET') {
     const kitchen = user.role === 'cocinero';
@@ -323,7 +328,11 @@ const server = http.createServer(async (req, res) => {
   res.setHeader('Referrer-Policy', 'same-origin');
   res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
   try {
-    if (![`localhost:${PORT}`, `127.0.0.1:${PORT}`].includes(req.headers.host)) fail('Host no permitido.', 403);
+    const allowedHosts = new Set([`localhost:${PORT}`, `127.0.0.1:${PORT}`]);
+    if (process.env.RENDER_EXTERNAL_HOSTNAME) allowedHosts.add(process.env.RENDER_EXTERNAL_HOSTNAME);
+    if (process.env.ALLOWED_HOST) allowedHosts.add(process.env.ALLOWED_HOST);
+    const hostOk = allowedHosts.has(req.headers.host) || (process.env.NODE_ENV === 'production' && /^[a-z0-9-]+\.onrender\.com$/i.test(req.headers.host || ''));
+    if (!hostOk) fail('Host no permitido.', 403);
     const url = new URL(req.url, 'http://' + req.headers.host);
     if (url.pathname.startsWith('/api/')) return await enqueue(() => api(req, res, url));
     if (req.method !== 'GET') fail('Método no permitido.', 405);
@@ -347,15 +356,19 @@ let queue = Promise.resolve();
 function enqueue(work) { const task = queue.then(work); queue = task.catch(()=>{}); return task; }
 function home(role) { return role === 'cocinero' ? '/cocina.html' : role === 'cajero' ? '/facturacion.html' : '/index.html'; }
 async function start() {
-  await storage.open();
+  await storage.open(true);
   db = await storage.load();
-  if (!db) throw new Error('Ejecuta npm run db:init antes de iniciar SIAR.');
+  if (!db) {
+    db = storage.normalize(initialData());
+    await storage.save(db);
+    console.log('Base de datos inicializada con datos base de SIAR.');
+  }
   server.listen(PORT, HOST, () => {
-    console.log(`SIAR: http://localhost:${PORT} | Base: ${storage.config.database}`);
-    if(!db.users.length) console.log('Código para crear el primer administrador: ' + setupToken);
+    console.log(`SIAR: http://${HOST}:${PORT} | Base: ${storage.config.database}`);
+    if (!db.users.length) console.log('Código para crear el primer administrador: ' + setupToken);
   });
 }
-if (require.main === module) start().catch(async e=> { console.error('No se pudo iniciar SIAR:',e.message,'\nRevisa MySQL de XAMPP y config.json.'); await storage.close(); process.exitCode=1; });
+if (require.main === module) start().catch(async e=> { console.error('No se pudo iniciar SIAR:',e.message,'\nRevisa la conexión a MySQL.'); await storage.close(); process.exitCode=1; });
 module.exports = {initialData, money, numberValue, passwordHash};
 
 if(require.main===module)process.on('SIGTERM',()=>{
