@@ -12,7 +12,6 @@
 * Santiago López Ramírez
 * José David Cárdenas Tovar
 * Nicole Segovia Cortes
-* Gloria Johanna Chala Torres
 
 ---
 
