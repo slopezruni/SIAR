@@ -349,7 +349,11 @@ const server = http.createServer(async (req, res) => {
     const full = path.join(PUBLIC, file);
     if (!fs.existsSync(full) || !fs.statSync(full).isFile()) fail('Archivo no encontrado.', 404);
     res.writeHead(200, { 'Content-Type': types[ext], 'Cache-Control': 'no-store' }); res.end(fs.readFileSync(full));
-  } catch(e) { if (!res.headersSent) send(res, e.status || 500, { error: e.status ? e.message : 'No se pudo guardar o procesar la operación.' }); else res.end(); }
+  } catch(e) {
+    if (!e.status) console.error('Error en API:', e);
+    if (!res.headersSent) send(res, e.status || 500, { error: e.status ? e.message : 'No se pudo guardar o procesar la operación.' });
+    else res.end();
+  }
 });
 // La cola evita que dos solicitudes sobrescriban cambios durante una transacción.
 let queue = Promise.resolve();
