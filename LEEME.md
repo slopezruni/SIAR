@@ -5,7 +5,7 @@ Las evidencias de cobertura de la carpeta coverage corresponden a la versión 4.
 Consulta docs/PRUEBAS.md para las comprobaciones nuevas.
 La documentación histórica de reserva básica se sustituye por docs/RESERVAS_REPORTES_DASHBOARD.md.
 
-LINK DEL SERVIDOR:  https://siar-bhp8.onrender.com
+LINK DEL SERVIDOR:  https://siar-bhp8.onrender.com sigue funcional en web
 
 # SIAR — versión 5.0 (entrega local para validar)
 
